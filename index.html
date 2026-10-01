@@ -56,40 +56,49 @@ h1{font-size:26px;margin:8px 0 2px}
 <div id="app"></div>
 <script>
 var M=[
-{t:"Se présenter",e:"👋",g:"Saluer, dire son nom, où l’on habite, ce que l’on fait",
-items:[["Bonjour","Manahoana"],["Salut / ça va","Salama"],["Je m’appelle Paul","Ny anarako dia Paul"],["Je suis Paul","Izaho dia Paul"],["Comment t’appelles-tu ?","Iza ny anaranao ?"],["J’habite à Bois-le-roi","Mipetraka any Bois-le-roi"],["Je travaille dans la cybersécurité","Miasa amin’ny cybersécurité"],["Je comprends","Azoko"],["Je ne comprends pas","Tsy azoko"],["Tu peux répéter ?","Avereno hoe ?"],["Merci","Misaotra"],["Pardon / excusez-moi","Azafady"]],
-steps:[{t:"Saluer et remercier",ix:[0,1,10,11],tip:"Manahoana est le bonjour courant, Salama = salut / ça va, plus familier."},{t:"Se présenter",ix:[2,3,0,10],tip:"Ny anarako = mon nom, Izaho = moi. « dia » relie le sujet à ce qu’on en dit."},{t:"Nom et identité",ix:[4,2,3,1]},{t:"Habiter et travailler",ix:[5,6,4,3]},{t:"Comprendre et répéter",ix:[7,8,9,11],tip:"Tsy devant un mot = négation."},{t:"Mix 1",ix:[0,2,5,7,9]},{t:"Mix 2",ix:[1,3,4,6,8]},{t:"Mix 3",ix:[10,11,5,6,9,2]},{t:"Mix 4",ix:[4,5,6,7,8,9]},{t:"Révision finale",ix:[0,1,2,3,4,5,6,7,8,9,10,11]}]},
-{t:"Former une phrase",e:"🧩",g:"Négation, questions et phrases simples",
+{t:"Se présenter",e:"👋",g:"Saluer, se présenter, comprendre, remercier",
+items:[["Bonjour","Manahoana"],["Salut / ça va","Salama"],["Je m’appelle Paul","Ny anarako dia Paul"],["Je suis Paul","Izaho dia Paul"],["Comment t’appelles-tu ?","Iza ny anaranao ?"],["J’habite à Bois-le-roi","Izaho mipetraka any Bois-le-roi"],["Je travaille dans la cybersécurité","Izaho miasa amin’ny cybersécurité"],["Je comprends","Azoko"],["Je ne comprends pas","Tsy azoko"],["Tu peux répéter ?","Afaka averinao ve ?"],["Merci","Misaotra"],["Pardon / s’il vous plaît","Azafady"]],
+steps:[{t:"Politesse et comprendre",ix:[0,1,10,11,7,8,9],tip:"Salama = salut / ça va. Azafady sert à s’excuser et à dire « s’il vous plaît »."},{t:"Dire qui je suis",ix:[2,3,4,5,6,0,1],tip:"Ny anarako = mon nom, Izaho = moi. « dia » relie le sujet à ce qu’on en dit."},{t:"Révision du module",ix:[0,1,2,3,4,5,6,7,8,9,10,11]}]},
+{t:"Former une phrase",e:"🧩",g:"Négation, questions avec ve, phrases simples",
 items:[["Négation (ne… pas)","Tsy"],["Marqueur de question","Ve"],["Je travaille.","Miasa za"],["Je travaille ici.","Miasa ato za"],["Je travaille demain.","Miasa za rahampitso"],["Je travaille à Paris.","Miasa any Paris za"],["Je travaille avec Grégoire.","Miasa miaraka amin’i Grégoire za"],["Tu / toi","Ianao"],["Tu travailles ?","Miasa ve ianao ?"],["Tu travailles ici ?","Miasa ato ve ianao ?"],["Tu travailles à Paris ?","Miasa any Paris ve ianao ?"],["Tu comprends ?","Azonao ve ?"],["Je ne travaille pas.","Tsy miasa za"],["Tu manges ?","Misakafo ve ianao ?"],["Tu dors ?","Matory ve ianao ?"],["Ça va ?","Salama ve ianao ?"],["Je ne travaille pas ici.","Tsy miasa ato za"]],
-steps:[{t:"Tsy, Ve, Ianao et « je travaille »",ix:[0,1,2,7],tip:"Tsy = négation, Ve = question, Ianao = tu. Le verbe vient en premier : Miasa za (za = je, à l’oral)."},{t:"Où et quand",ix:[2,3,4,5]},{t:"Avec qui et la négation",ix:[6,12,16,3],tip:"Tsy se place juste avant le verbe : Tsy miasa za."},{t:"Poser une question avec Ve",ix:[8,9,10,7],tip:"Ve se place après le verbe : Miasa ve ianao ?"},{t:"Autres questions",ix:[11,13,14,15]},{t:"Mix 1",ix:[1,8,12,6,11]},{t:"Mix 2",ix:[3,9,13,16,4]},{t:"Mix 3",ix:[0,5,10,14,15,2]},{t:"Mix 4",ix:[12,16,8,9,10,11]},{t:"Révision finale",ix:[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]}]},
-{t:"Vocabulaire utile",e:"📚",g:"Vie quotidienne, interactions et temps",
-items:[["Manger","Misakafo"],["Boire","Misotro"],["Dormir","Matory"],["Travailler","Miasa"],["Sortir","Mivoaka"],["Rentrer","Mody"],["Acheter","Mividy"],["Prendre","Maka"],["Faire","Manao"],["Aller","Mandeha"],["Demander","Manontany"],["Répondre","Mamaly"],["Accepter","Manaiky"],["Expliquer","Manazava"],["Aujourd’hui","Androany"],["Demain","Rahampitso"],["Hier","Omaly"],["Maintenant","Zao"],["Toujours","Foana"],["Parfois","Indraindray"]],
-steps:[{t:"Verbes du quotidien 1",ix:[0,1,2,3],tip:"Beaucoup de verbes commencent par « mi- » ou « ma- »."},{t:"Verbes du quotidien 2",ix:[4,5,6,7]},{t:"Faire, aller, demander, répondre",ix:[8,9,10,11]},{t:"Accepter, expliquer, aujourd’hui, demain",ix:[12,13,14,15]},{t:"Hier, maintenant, toujours, parfois",ix:[16,17,18,19]},{t:"Mix 1",ix:[0,4,8,12,14]},{t:"Mix 2",ix:[2,6,10,16,18]},{t:"Mix 3",ix:[1,5,9,13,17,19]},{t:"Mix 4",ix:[3,7,11,15,0,10]},{t:"Révision finale",ix:[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]}]}
+steps:[{t:"Les bases d’une phrase",ix:[0,1,7,2,3,4,5,6],tip:"Le verbe vient en premier : Miasa za (za = je, à l’oral). Ianao = tu."},{t:"Négations et questions",ix:[12,16,8,9,10,11,13,14,15],tip:"Tsy se place avant le verbe, Ve juste après : Tsy miasa za / Miasa ve ianao ?"},{t:"Révision du module",ix:[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]}]},
+{t:"Vie quotidienne",e:"🏃",g:"Les verbes du quotidien",
+items:[["Manger","Misakafo"],["Boire","Misotro"],["Dormir","Matory"],["Travailler","Miasa"],["Sortir","Mivoaka"],["Rentrer","Mody"],["Acheter","Mividy"],["Prendre","Maka"],["Faire","Manao"],["Aller","Mandeha"],["Jouer","Milalao"]],
+steps:[{t:"Manger, boire, dormir…",ix:[0,1,2,3,4,5],tip:"Beaucoup de verbes commencent par « mi- » ou « ma- »."},{t:"Acheter, prendre, faire, aller, jouer",ix:[6,7,8,9,10,0,1]},{t:"Révision du module",ix:[0,1,2,3,4,5,6,7,8,9,10]}]},
+{t:"Interaction, goûts et temps",e:"💬",g:"Demander, répondre, aimer, vouloir, le temps",
+items:[["Demander","Manontany"],["Répondre","Mamaly"],["Accepter","Manaiky"],["Expliquer","Manazava"],["Aimer","Tia"],["Avoir envie de","Te"],["Aujourd’hui","Androany"],["Demain","Rahampitso"],["Hier","Omaly"],["Maintenant","Zao"],["Toujours","Foana"],["Parfois","Indraindray"]],
+steps:[{t:"Interagir et exprimer ses goûts",ix:[0,1,2,3,4,5]},{t:"Le temps",ix:[6,7,8,9,10,11]},{t:"Révision du module",ix:[0,1,2,3,4,5,6,7,8,9,10,11]}]},
+{t:"La maison et les animaux",e:"🏠",g:"Meubles, chambre, chien et chat",
+items:[["Chaise","Seza"],["Table","Latabatra"],["Chien","Alika"],["Chat","Saka"],["Lit","Fandriana"],["Couverture","Lamba"],["Oreiller","Ondana"]],
+steps:[{t:"Meubles et animaux",ix:[0,1,2,3,4]},{t:"Révision du module",ix:[0,1,2,3,4,5,6]}]},
+{t:"La nourriture",e:"🍚",g:"Riz, viandes et phrases simples",
+items:[["Riz","Vary"],["Accompagnement (viande ou féculents)","Loaka"],["Poulet","Akoho"],["Bœuf","Omby"],["Viande","Hena"],["Cochon","Kisoa"],["Manger","Misakafo"],["Boire","Misotro"],["J’aime le riz.","Tia vary za"],["Tu aimes le poulet ?","Tia akoho ve ianao ?"]],
+steps:[{t:"Riz et viandes",ix:[0,1,2,3,4,5]},{t:"Manger, boire, aimer",ix:[6,7,8,9,1,2]},{t:"Révision du module",ix:[0,1,2,3,4,5,6,7,8,9]}]}
 ];
 var S=load(),L=null,app=document.getElementById("app");
-function load(){var d;try{d=JSON.parse(localStorage.getItem("mg1"))}catch(e){}d=d||{};d.xp=d.xp||0;d.done=d.done||{};return d}
-function save(){try{localStorage.setItem("mg1",JSON.stringify(S))}catch(e){}}
+function load(){var d;try{d=JSON.parse(localStorage.getItem("mg2"))}catch(e){}d=d||{};d.xp=d.xp||0;d.done=d.done||{};return d}
+function save(){try{localStorage.setItem("mg2",JSON.stringify(S))}catch(e){}}
 function sh(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
-function cnt(i){var n=0;for(var s=0;s<10;s++)if(S.done[i+"-"+s]!==undefined)n++;return n}
+function cnt(i){var n=0;for(var s=0;s<M[i].steps.length;s++)if(S.done[i+"-"+s]!==undefined)n++;return n}
 var AC;function snd(t){if(S.mute)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();if(AC.state=="suspended")AC.resume();var q=[[[660,0],[880,.12]],[[220,0],[165,.15]],[[523,0],[659,.1],[784,.2],[1047,.3]],[[300,0],[200,.15],[150,.3]]][t];q.forEach(function(n){var o=AC.createOscillator(),g=AC.createGain(),st=AC.currentTime+n[1];o.type=t%2?"sawtooth":"sine";o.frequency.value=n[0];g.gain.setValueAtTime(.0001,st);g.gain.exponentialRampToValueAtTime(.2,st+.02);g.gain.exponentialRampToValueAtTime(.0001,st+.22);o.connect(g);g.connect(AC.destination);o.start(st);o.stop(st+.25)})}catch(e){}}
 function sb(){return '<button class="x" id="sn" title="Son">'+(S.mute?"🔇":"🔊")+'</button>'}
 app.addEventListener("click",function(e){var t=e.target.closest("#sn");if(t){S.mute=!S.mute;save();t.textContent=S.mute?"🔇":"🔊"}});
-function home(){L=null;var h='<div class="top"><span class="pill">⭐ '+S.xp+' XP</span>'+sb()+'</div><h1>Mianatra Malagasy 🇲🇬</h1><p class="sub">3 modules, 10 petites étapes chacun.</p>';
-M.forEach(function(m,i){h+='<button class="mod" data-i="'+i+'"><span class="ic">'+m.e+'</span><span>Module '+(i+1)+' : '+m.t+'<small>'+m.g+'</small><small>'+cnt(i)+' / 10 étapes terminées</small></span></button>'});
+function home(){L=null;var h='<div class="top"><span class="pill">⭐ '+S.xp+' XP</span>'+sb()+'</div><h1>Mianatra Malagasy 🇲🇬</h1><p class="sub">6 modules, des étapes courtes de 5 à 10 mots.</p>';
+M.forEach(function(m,i){h+='<button class="mod" data-i="'+i+'"><span class="ic">'+m.e+'</span><span>Module '+(i+1)+' : '+m.t+'<small>'+m.g+'</small><small>'+cnt(i)+' / '+m.steps.length+' étapes terminées</small></span></button>'});
 app.innerHTML=h;app.querySelectorAll(".mod").forEach(function(b){b.onclick=function(){mpage(+b.dataset.i)}})}
-function mpage(i){L=null;var m=M[i],h='<div class="top"><button class="x" id="bk">←</button><span class="pill">⭐ '+S.xp+' XP</span>'+sb()+'</div><h1>Module '+(i+1)+' : '+m.t+'</h1><p class="sub">'+cnt(i)+' / 10 étapes</p>';
+function mpage(i){L=null;var m=M[i],h='<div class="top"><button class="x" id="bk">←</button><span class="pill">⭐ '+S.xp+' XP</span>'+sb()+'</div><h1>Module '+(i+1)+' : '+m.t+'</h1><p class="sub">'+cnt(i)+' / '+m.steps.length+' étapes</p>';
 m.steps.forEach(function(st,s){var d=S.done[i+"-"+s],lk=s>0&&S.done[i+"-"+(s-1)]===undefined;h+='<button class="st'+(lk?' lk':'')+'"'+(lk?' disabled':'')+' data-s="'+s+'"><span class="n">'+(d!==undefined?'✓':lk?'🔒':s+1)+'</span><span>'+st.t+'<small>'+(d!==undefined?'Score : '+d+'%':lk?'Verrouillée':'À faire')+'</small></span></button>'});
 app.innerHTML=h;document.getElementById("bk").onclick=home;app.querySelectorAll(".st").forEach(function(b){b.onclick=function(){start(i,+b.dataset.s)}})}
 function mk(m,it,dir){var q=dir?it[0]:it[1],a=dir?it[1]:it[0],n=it[1].split(" ").length,all=m.items.filter(function(x){return x!==it}).map(function(x){return dir?x[1]:x[0]}),same=all.filter(function(x){return x.split(" ").length==a.split(" ").length});
 var pool=sh(same.length>=3?same:all).slice(0,3);return{k:"c",p:dir?"Comment dit-on en malagasy ?":"Que signifie ce mot ?",q:q,a:a,o:sh(pool.concat([a]))}}
 function mkq(m,it,t){return t=="b"?{k:"b",fr:it[0],mg:it[1],bank:sh(it[1].split(" "))}:mk(m,it,t=="f")}
-function start(i,s){var m=M[i],st=m.steps[s],ix=sh(st.ix),tp=ix.map(function(k){return sh(m.items[k][1].split(" ").length>1?["f","m","b"]:["f","m"])}),tg=Math.min(10,ix.length*2),c=[];
+function start(i,s){var m=M[i],st=m.steps[s],ix=sh(st.ix),tp=ix.map(function(k){return sh(m.items[k][1].split(" ").length>1?["f","m","b"]:["f","m"])}),tg=Math.min(12,ix.length*2),c=[];
 for(var r=0;r<3&&c.length<tg;r++)ix.forEach(function(k,n){if(c.length<tg&&tp[n][r])c.push(mkq(m,m.items[k],tp[n][r]))});
 c=sh(c);L={i:i,s:s,qs:c,tot:c.length,h:5,ok:0,wr:0,sel:null,pick:[],intro:true};draw()}
 function head(){var p=Math.round((L.tot-L.qs.length)/L.tot*100);return '<div class="top"><button class="x" id="qx">✕</button><div class="bar"><i style="width:'+p+'%"></i></div><span>❤️ '+L.h+'</span></div>'}
 function draw(){var m=M[L.i],st=m.steps[L.s];
 if(L.intro){var h=head()+'<div class="q"><h2>Étape '+(L.s+1)+' : '+st.t+'</h2>';if(st.tip)h+='<div class="tip">'+st.tip+'</div>';
-if(st.ix.length<=6){h+='<p class="sub">Les mots de cette étape :</p>';st.ix.forEach(function(k){h+='<div class="new"><span>'+m.items[k][0]+'</span><b>'+m.items[k][1]+'</b></div>'})}else h+='<p class="sub">On révise tout ce que tu as vu.</p>';
+if(st.ix.length<=10){h+='<p class="sub">Les mots de cette étape :</p>';st.ix.forEach(function(k){h+='<div class="new"><span>'+m.items[k][0]+'</span><b>'+m.items[k][1]+'</b></div>'})}else h+='<p class="sub">On révise tout ce que tu as vu.</p>';
 app.innerHTML=h+'</div><button class="btn" id="go">Commencer</button>';document.getElementById("qx").onclick=function(){mpage(L.i)};document.getElementById("go").onclick=function(){L.intro=false;draw()};return}
 if(L.h<=0)return end(false);if(!L.qs.length)return end(true);
 var q=L.qs[0],h=head()+'<div class="q">';
@@ -107,7 +116,7 @@ else{ans=q.mg;good=L.pick.map(function(t){return q.bank[t]}).join(" ")===q.mg}
 snd(good?0:1);if(good){L.ok++;S.xp+=10;save()}else{L.h--;L.wr++}
 document.getElementById("foot").innerHTML='<div class="fb '+(good?"ok":"bad")+'"><p>'+(good?"✅ Bravo !":"❌ La bonne réponse : "+ans)+'</p><button class="btn" id="nx">Continuer</button></div>';
 document.getElementById("nx").onclick=function(){var c=L.qs.shift();if(!good)L.qs.push(c);L.sel=null;L.pick=[];draw()}}
-function end(win){var sc=Math.round(L.ok/(L.ok+L.wr)*100)||0,i=L.i,s=L.s,last=s>=9;snd(win?2:3);if(win){S.done[i+"-"+s]=Math.max(S.done[i+"-"+s]||0,sc);S.xp+=20;save()}
+function end(win){var sc=Math.round(L.ok/(L.ok+L.wr)*100)||0,i=L.i,s=L.s,last=s>=M[i].steps.length-1;snd(win?2:3);if(win){S.done[i+"-"+s]=Math.max(S.done[i+"-"+s]||0,sc);S.xp+=20;save()}
 app.innerHTML='<div class="end"><div class="em">'+(win?"🎉":"💔")+'</div><h1>'+(win?"Étape "+(s+1)+" terminée !":"Plus de vies…")+'</h1><p class="sub">'+(win?"Précision : "+sc+"% · XP : "+S.xp:"Réessaie, tu vas y arriver !")+'</p></div><button class="btn" id="a1">'+(win?(last?"Retour au module":"Étape suivante"):"Réessayer")+'</button><div style="height:10px"></div><button class="btn sec" id="a2">Liste des étapes</button>';
 document.getElementById("a1").onclick=function(){win?(last?mpage(i):start(i,s+1)):start(i,s)};document.getElementById("a2").onclick=function(){mpage(i)}}
 home();
