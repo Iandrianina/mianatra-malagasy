@@ -50,11 +50,15 @@ h1{font-size:26px;margin:8px 0 2px}
 .st small{display:block;color:var(--mut);font-weight:600}
 .new{display:flex;justify-content:space-between;gap:10px;background:var(--card);border:2px solid var(--line);border-radius:12px;padding:10px 14px;margin-bottom:8px}
 .new b{color:var(--gd)}
+.inp{width:100%;padding:14px;margin-bottom:12px;border:2px solid var(--line);border-radius:12px;background:var(--bg);color:inherit;font:inherit;font-size:17px}
+.err{color:var(--r);margin:0 0 10px}
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 </head>
 <body>
 <div id="app"></div>
 <script>
+var SB_URL="COLLE_ICI_URL_SUPABASE",SB_KEY="COLLE_ICI_CLE_ANON";
 var M=[
 {t:"Se présenter",e:"👋",g:"Saluer, se présenter, comprendre, remercier",
 items:[["Bonjour","Manahoana"],["Salut / ça va","Salama"],["Je m’appelle Paul","Ny anarako dia Paul"],["Je suis Paul","Izaho dia Paul"],["Comment t’appelles-tu ?","Iza ny anaranao ?"],["J’habite à Bois-le-roi","Izaho mipetraka any Bois-le-roi"],["Je travaille dans la cybersécurité","Izaho miasa amin’ny cybersécurité"],["Je comprends","Azoko"],["Je ne comprends pas","Tsy azoko"],["Tu peux répéter ?","Afaka averinao ve ?"],["Merci","Misaotra"],["Pardon / s’il vous plaît","Azafady"]],
@@ -75,18 +79,18 @@ steps:[{t:"Meubles et animaux",ix:[0,1,2,3,4]},{t:"Révision du module",ix:[0,1,
 items:[["Riz","Vary"],["Accompagnement (viande ou féculents)","Loaka"],["Poulet","Akoho"],["Bœuf","Omby"],["Viande","Hena"],["Cochon","Kisoa"],["Manger","Misakafo"],["Boire","Misotro"],["J’aime le riz.","Tia vary za"],["Tu aimes le poulet ?","Tia akoho ve ianao ?"]],
 steps:[{t:"Riz et viandes",ix:[0,1,2,3,4,5]},{t:"Manger, boire, aimer",ix:[6,7,8,9,1,2]},{t:"Révision du module",ix:[0,1,2,3,4,5,6,7,8,9]}]}
 ];
-var S=load(),L=null,app=document.getElementById("app");
+var U=null,SB=null,S=load(),L=null,app=document.getElementById("app");
 function load(){var d;try{d=JSON.parse(localStorage.getItem("mg2"))}catch(e){}d=d||{};d.xp=d.xp||0;d.done=d.done||{};return d}
-function save(){try{localStorage.setItem("mg2",JSON.stringify(S))}catch(e){}}
+function save(){if(U)return;try{localStorage.setItem("mg2",JSON.stringify(S))}catch(e){}}
 function sh(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
 function cnt(i){var n=0;for(var s=0;s<M[i].steps.length;s++)if(S.done[i+"-"+s]!==undefined)n++;return n}
 var AC;function snd(t){if(S.mute)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();if(AC.state=="suspended")AC.resume();var q=[[[660,0],[880,.12]],[[220,0],[165,.15]],[[523,0],[659,.1],[784,.2],[1047,.3]],[[300,0],[200,.15],[150,.3]]][t];q.forEach(function(n){var o=AC.createOscillator(),g=AC.createGain(),st=AC.currentTime+n[1];o.type=t%2?"sawtooth":"sine";o.frequency.value=n[0];g.gain.setValueAtTime(.0001,st);g.gain.exponentialRampToValueAtTime(.2,st+.02);g.gain.exponentialRampToValueAtTime(.0001,st+.22);o.connect(g);g.connect(AC.destination);o.start(st);o.stop(st+.25)})}catch(e){}}
 function sb(){return '<button class="x" id="sn" title="Son">'+(S.mute?"🔇":"🔊")+'</button>'}
 app.addEventListener("click",function(e){var t=e.target.closest("#sn");if(t){S.mute=!S.mute;save();t.textContent=S.mute?"🔇":"🔊"}});
-function home(){L=null;var h='<div class="top"><span class="pill">⭐ '+S.xp+' XP</span>'+sb()+'</div><h1>Mianatra Malagasy 🇲🇬</h1><p class="sub">6 modules, des étapes courtes de 5 à 10 mots.</p>';
+function home(){L=null;var h='<div class="top"><span class="pill">⭐ '+S.xp+' XP</span>'+acct()+sb()+'</div><h1>Mianatra Malagasy 🇲🇬</h1><p class="sub">6 modules, des étapes courtes de 5 à 10 mots.</p>';
 M.forEach(function(m,i){h+='<button class="mod" data-i="'+i+'"><span class="ic">'+m.e+'</span><span>Module '+(i+1)+' : '+m.t+'<small>'+m.g+'</small><small>'+cnt(i)+' / '+m.steps.length+' étapes terminées</small></span></button>'});
 app.innerHTML=h;app.querySelectorAll(".mod").forEach(function(b){b.onclick=function(){mpage(+b.dataset.i)}})}
-function mpage(i){L=null;var m=M[i],h='<div class="top"><button class="x" id="bk">←</button><span class="pill">⭐ '+S.xp+' XP</span>'+sb()+'</div><h1>Module '+(i+1)+' : '+m.t+'</h1><p class="sub">'+cnt(i)+' / '+m.steps.length+' étapes</p>';
+function mpage(i){L=null;var m=M[i],h='<div class="top"><button class="x" id="bk">←</button><span class="pill">⭐ '+S.xp+' XP</span>'+acct()+sb()+'</div><h1>Module '+(i+1)+' : '+m.t+'</h1><p class="sub">'+cnt(i)+' / '+m.steps.length+' étapes</p>';
 m.steps.forEach(function(st,s){var d=S.done[i+"-"+s],lk=s>0&&S.done[i+"-"+(s-1)]===undefined;h+='<button class="st'+(lk?' lk':'')+'"'+(lk?' disabled':'')+' data-s="'+s+'"><span class="n">'+(d!==undefined?'✓':lk?'🔒':s+1)+'</span><span>'+st.t+'<small>'+(d!==undefined?'Score : '+d+'%':lk?'Verrouillée':'À faire')+'</small></span></button>'});
 app.innerHTML=h;document.getElementById("bk").onclick=home;app.querySelectorAll(".st").forEach(function(b){b.onclick=function(){start(i,+b.dataset.s)}})}
 function mk(m,it,dir){var q=dir?it[0]:it[1],a=dir?it[1]:it[0],n=it[1].split(" ").length,all=m.items.filter(function(x){return x!==it}).map(function(x){return dir?x[1]:x[0]}),same=all.filter(function(x){return x.split(" ").length==a.split(" ").length});
@@ -113,13 +117,28 @@ document.getElementById("chk").onclick=check}
 function check(){var q=L.qs[0],good,ans;
 if(q.k=="c"){ans=q.a;good=q.o[L.sel]===q.a;app.querySelectorAll(".opt").forEach(function(b,j){b.disabled=true;if(q.o[j]===q.a)b.classList.add("ok");else if(j===L.sel)b.classList.add("bad")})}
 else{ans=q.mg;good=L.pick.map(function(t){return q.bank[t]}).join(" ")===q.mg}
-snd(good?0:1);if(good){L.ok++;S.xp+=10;save()}else{L.h--;L.wr++}
+snd(good?0:1);if(good){L.ok++}else{L.h--;L.wr++}
 document.getElementById("foot").innerHTML='<div class="fb '+(good?"ok":"bad")+'"><p>'+(good?"✅ Bravo !":"❌ La bonne réponse : "+ans)+'</p><button class="btn" id="nx">Continuer</button></div>';
 document.getElementById("nx").onclick=function(){var c=L.qs.shift();if(!good)L.qs.push(c);L.sel=null;L.pick=[];draw()}}
-function end(win){var sc=Math.round(L.ok/(L.ok+L.wr)*100)||0,i=L.i,s=L.s,last=s>=M[i].steps.length-1;snd(win?2:3);if(win){S.done[i+"-"+s]=Math.max(S.done[i+"-"+s]||0,sc);S.xp+=20;save()}
+function end(win){var sc=Math.round(L.ok/(L.ok+L.wr)*100)||0,i=L.i,s=L.s,last=s>=M[i].steps.length-1;snd(win?2:3);if(win){var key=i+"-"+s,first=S.done[key]===undefined;S.done[key]=Math.max(S.done[key]||0,sc);if(first){S.xp+=25;if(U&&SB)SB.from("xp_events").insert({module:i,step:s,xp:25,score:sc}).then(function(r){if(r.error)console.warn(r.error.message)})}save()}
 app.innerHTML='<div class="end"><div class="em">'+(win?"🎉":"💔")+'</div><h1>'+(win?"Étape "+(s+1)+" terminée !":"Plus de vies…")+'</h1><p class="sub">'+(win?"Précision : "+sc+"% · XP : "+S.xp:"Réessaie, tu vas y arriver !")+'</p></div><button class="btn" id="a1">'+(win?(last?"Retour au module":"Étape suivante"):"Réessayer")+'</button><div style="height:10px"></div><button class="btn sec" id="a2">Liste des étapes</button>';
 document.getElementById("a1").onclick=function(){win?(last?mpage(i):start(i,s+1)):start(i,s)};document.getElementById("a2").onclick=function(){mpage(i)}}
-home();
+try{if(SB_URL.indexOf("http")==0&&window.supabase)SB=supabase.createClient(SB_URL,SB_KEY)}catch(e){}
+function acct(){return !SB?"":U?'<button class="pill" id="out">👤 '+U+' · Quitter</button>':'<button class="pill" id="lg">Se connecter</button>'}
+function em(p){return p+"@mianatra.app"}
+async function loadRemote(){var r=await SB.from("xp_events").select("module,step,xp,score"),d={},x=0;(r.data||[]).forEach(function(e){d[e.module+"-"+e.step]=e.score==null?100:e.score;x+=e.xp});S.done=d;S.xp=x}
+function loginView(msg){L=null;app.innerHTML='<h1>Connexion 🇲🇬</h1><p class="sub">Choisis un pseudo et un mot de passe pour garder tes XP.</p>'+(msg?'<p class="err">'+msg+'</p>':'')+'<input class="inp" id="ps" placeholder="Pseudo" autocapitalize="none" autocomplete="username"><input class="inp" id="pw" type="password" placeholder="Mot de passe (6 caractères min.)" autocomplete="current-password"><button class="btn" id="in">Se connecter</button><div style="height:10px"></div><button class="btn sec" id="up">Créer le compte</button><div style="height:10px"></div><button class="btn sec" id="nc">Continuer sans compte</button>';
+document.getElementById("in").onclick=function(){auth("in")};document.getElementById("up").onclick=function(){auth("up")};document.getElementById("nc").onclick=home}
+async function auth(mode){var p=document.getElementById("ps").value.toLowerCase().trim(),w=document.getElementById("pw").value;
+if(!/^[a-z0-9_-]{3,20}$/.test(p))return loginView("Pseudo : 3 à 20 lettres ou chiffres, sans espace ni accent.");if(w.length<6)return loginView("Mot de passe : 6 caractères minimum.");
+var r=mode=="up"?await SB.auth.signUp({email:em(p),password:w}):await SB.auth.signInWithPassword({email:em(p),password:w});
+if(r.error)return loginView(mode=="up"?"Ce pseudo est déjà pris (ou inscription impossible).":"Pseudo ou mot de passe incorrect.");
+if(!r.data.session)return loginView("Désactive « Confirm email » dans Supabase (Authentication).");
+if(mode=="up")await SB.from("profiles").insert({id:r.data.user.id,name:p});
+U=p;await loadRemote();home()}
+app.addEventListener("click",function(e){if(e.target.closest("#lg"))loginView();if(e.target.closest("#out")){SB.auth.signOut();U=null;S=load();home()}});
+async function init(){if(!SB)return home();try{var r=await SB.auth.getSession();if(r.data.session){U=r.data.session.user.email.split("@")[0];await loadRemote();return home()}}catch(e){}loginView()}
+init();
 </script>
 </body>
 </html>
